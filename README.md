@@ -1,7 +1,8 @@
 Real-Time Product Dashboard - Frontend
 A modern, responsive dashboard for real-time product management built with Next.js and TypeScript.
+<img width="1366" height="768" alt="Screenshot from 2025-07-16 14-13-32" src="https://github.com/user-attachments/assets/e3b824fc-a208-4e04-9ee9-6036ffea93a7" />
 
-https://via.placeholder.com/800x400/3B82F6/FFFFFF?text=Real-Time+Product+Dashboard
+![Dashboard Screenshot](src/assets/dashboard.png)
 
 🚀 Features
 🔐 Secure Authentication - JWT-based login system
@@ -50,6 +51,8 @@ src/
 │   └── listeners/     # Real-time Firestore listeners
 ├── hooks/             # Custom React hooks
 └── styles/            # Global styles and Tailwind config
+
+
 ⚡ Quick Start
 Prerequisites
 Node.js 18+
@@ -89,9 +92,8 @@ Open http://localhost:3000 in your browser.
 🔐 Demo Login
 Use these credentials to test the application:
 
-Email: demo@gmail.com
-
-Password: 123456
+Email: admin@example.com
+Password: password123
 
 🏗 Building for Production
 bash
@@ -136,17 +138,11 @@ Contributing
 Fork the repository
 
 Create a feature branch
-
 Commit your changes
-
 Push to the branch
-
 Open a Pull Request
 
-📝 License
-This project is licensed under the MIT License.
-
 🤝 Support
-For support and questions, please open an issue in the repository or contact the development team.
+For and questions, please send mail jerinrubaiyakhan11@gmail.com.
 
-Built with ❤️ using Next.js, TypeScript, and modern web technologies.
+Built using Next.js, TypeScript, and modern web technologies.
