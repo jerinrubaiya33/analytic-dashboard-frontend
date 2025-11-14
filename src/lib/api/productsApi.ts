@@ -1,23 +1,3 @@
-// import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-// export const productsApi = createApi({
-//   reducerPath: "productsApi",
-//   baseQuery: fetchBaseQuery({
-//     baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4000",
-//     credentials: "include"
-//   }),
-//   endpoints: (builder) => ({
-//     getProducts: builder.query<any[], void>({
-//       query: () => "/products"
-//     })
-//   })
-// });
-
-// export const { useGetProductsQuery } = productsApi;
-// export default productsApi;
-
-
-
 // src/lib/api/productsApi.ts
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -72,3 +52,4 @@ export const {
   useAddProductMutation, 
   useDeleteProductMutation 
 } = productsApi;
+
