@@ -141,7 +141,6 @@ Commit your changes
 Push to the branch
 Open a Pull Request
 
-🤝 Support
-For and questions, please send mail jerinrubaiyakhan11@gmail.com.
+🤝Any questions, please send mail jerinrubaiyakhan11@gmail.com.
 
 Built using Next.js, TypeScript, and modern web technologies.
