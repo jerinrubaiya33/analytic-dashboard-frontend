@@ -60,11 +60,6 @@
 
 
 
-
-
-
-
-// _______________SLEEEEEEEEPPPPPP___________
 // src/lib/api/authApi.ts
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -79,7 +74,7 @@ export interface LoginResponse {
   token?: string;
 }
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "https://analytic-dashboard-backend.vercel.app";
 
 export const authApi = createApi({
   reducerPath: "authApi",
