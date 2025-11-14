@@ -79,17 +79,16 @@ export default function Page() {
 
   useEffect(() => {
     // Step 1: Login first to get the JWT cookie
-    // fetch("http://localhost:4000/api/login",
-    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/login`,
-      {
-      method: "POST",
-      credentials: "include", // important!
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: "admin@example.com",
-        password: "password123",
-      }),
-    })
+   fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/login`, {
+  method: "POST",
+  credentials: "include",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    email: "admin@example.com",
+    password: "password123",
+  }),
+})
+
       .then((res) => {
         if (!res.ok) throw new Error("Login failed");
         return res.json();
