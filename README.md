@@ -1,8 +1,7 @@
 Real-Time Product Dashboard - Frontend
 A modern, responsive dashboard for real-time product management built with Next.js and TypeScript.
 
-![Dashboard Screenshot](src="https://github.com/user-attachments/assets/83c31476-2822-4b25-99a8-d58535ef179b")
-
+<img width="600" height="400" alt="Screenshot from 2025-11-14 17-08-09" src="https://github.com/user-attachments/assets/dba055ea-3536-457b-ab0d-844ad7646f14" />
 
 🚀 Features
 🔐 Secure Authentication - JWT-based login system
