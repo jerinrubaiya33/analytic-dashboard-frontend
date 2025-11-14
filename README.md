@@ -1,4 +1,4 @@
-  **Real-Time Product Dashboard - Frontend**
+# Analytic Real-Time Product - Frontend
 A modern, responsive dashboard for real-time product management built with Next.js and TypeScript.
 
 <img width="600" height="400" alt="Screenshot from 2025-11-14 17-17-52" src="https://github.com/user-attachments/assets/63320763-171a-48f2-8b7a-1eee8f7992e0" />
