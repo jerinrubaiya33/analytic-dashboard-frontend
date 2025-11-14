@@ -79,7 +79,9 @@ export default function Page() {
 
   useEffect(() => {
     // Step 1: Login first to get the JWT cookie
-    fetch("http://localhost:4000/api/login", {
+    // fetch("http://localhost:4000/api/login",
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/login`,
+      {
       method: "POST",
       credentials: "include", // important!
       headers: { "Content-Type": "application/json" },
