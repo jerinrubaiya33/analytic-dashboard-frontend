@@ -148,6 +148,9 @@
 
 
 
+
+
+
 // src/lib/api/productsApi.ts - FIXED VERSION
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -164,29 +167,21 @@ export interface AddProductRequest {
 
 const API_BASE = "https://analytic-dashboard-backend.vercel.app";
 
-// Token helper - MUST BE THE SAME AS IN authApi.ts
+// SIMPLIFIED token helper
 const getToken = (): string | null => {
-  if (typeof window !== 'undefined') {
-    return localStorage.getItem('auth_token');
-  }
-  return null;
+  return localStorage.getItem('auth_token');
 };
 
 export const productsApi = createApi({
   reducerPath: "productsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: API_BASE,
-    credentials: "include", // ← ADD THIS LINE (MISSING!)
-    prepareHeaders: (headers, { getState }) => {
-      // Get token from localStorage
+    credentials: "include",
+    prepareHeaders: (headers) => { // Remove { getState } parameter
       const token = getToken();
-      console.log("🔄 Products API - Token found:", !!token);
       
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);
-        console.log("✅ Authorization header set");
-      } else {
-        console.log("❌ No token found for products API");
       }
       
       headers.set('Content-Type', 'application/json');
