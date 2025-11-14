@@ -1,7 +1,7 @@
 # Analytic Real-Time Product - Frontend
 A modern, responsive dashboard for real-time product management built with Next.js and TypeScript.
 
-# Live links:
+# 🌐 Live Demo:
 **Analytic dashboard:** https://analytic-dashboard-frontend.vercel.app/dashboard
 
 **Analytic Products:** https://analytic-dashboard-frontend.vercel.app/login
