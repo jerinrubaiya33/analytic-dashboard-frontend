@@ -465,7 +465,8 @@ export default function ProductsPage() {
 
     setDeleteLoading(productId);
     try {
-      const response = await fetch(`http://localhost:4000/api/products/${productId}`, {
+     // const response = await fetch(`http://localhost:4000/api/products/${productId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products/${productId}`, {
         method: "DELETE",
         credentials: "include", // Important for sending cookies
       });
