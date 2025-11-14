@@ -96,7 +96,8 @@ export default function Page() {
       })
       .then(() => {
         // Step 2: Fetch protected data
-        return fetch("http://localhost:4000/api/protected", {
+        // return fetch("http://localhost:4000/api/protected", {
+         return fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/protected`, {
           method: "GET",
           credentials: "include", // send cookie with request
         });
