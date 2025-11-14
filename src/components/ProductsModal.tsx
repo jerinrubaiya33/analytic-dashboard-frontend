@@ -21,7 +21,8 @@ export default function ProductsModal({ isOpen, onClose }: ProductsModalProps) {
   const onSubmit = async (data: ProductFormInputs) => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:4000/api/products", {
+       // const response = await fetch("http://localhost:4000/api/products", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products`, {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
