@@ -79,13 +79,16 @@ npm or yarn
 
 Firebase project
 
-**Installation**
-Clone the repository
+### Installation
+
+**Clone the repository**
 
 **bash**
+```text
 git clone <repository-url>
 cd product-dashboard-frontend
 Install dependencies
+```
 
 **bash**
 npm install
@@ -113,13 +116,17 @@ Open http://localhost:3000 in your browser.
 🔐 **Demo Login**
 Use these credentials to test the application:
 
-**Email: admin@example.com
-Password: password123**
+**Email: admin@example.com**
+
+**Password: password123**
 
 🏗 Building for Production
 bash
 # Create production build
-npm run build
+```text
+npm install
+npm start
+```
 
 # Start production server
 ```text
