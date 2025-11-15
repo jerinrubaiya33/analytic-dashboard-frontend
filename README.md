@@ -12,6 +12,8 @@ Email: admin@gmail.com
 Password: password123
 
 
+**Firestore Database:** https://console.firebase.google.com/u/0/project/analytic-dashboard-fac7a/firestore/databases/-default-/data/~2Fproducts~2FBvQyUlbFFJbdSnvjOiDU
+
 <img width="600" height="400" alt="Screenshot from 2025-11-14 17-17-52" src="https://github.com/user-attachments/assets/63320763-171a-48f2-8b7a-1eee8f7992e0" />
 <img width="600" height="400" alt="Screenshot from 2025-11-14 17-08-09" src="https://github.com/user-attachments/assets/dba055ea-3536-457b-ab0d-844ad7646f14" />
 <img width="600" height="400" alt="Screenshot from 2025-11-14 17-39-17" src="https://github.com/user-attachments/assets/a6c64281-b9da-470e-8a8b-2244efb7dfa7" />
