@@ -270,10 +270,6 @@
 
 
 
-
-
-
-
 // // src/app/products/page.tsx
 // "use client";
 
@@ -404,7 +400,202 @@
 
 
 
-// src/app/products/page.tsx
+// // src/app/products/page.tsx
+// "use client";
+
+// import React, { useEffect, useState } from "react";
+// import { useSelector, useDispatch } from "react-redux";
+// import { RootState, AppDispatch } from "@/src/lib/store";
+// import { subscribeToProducts } from "@/src/lib/redux/listeners/productsListener";
+// import { productsColumns } from "@/src/lib/tableColumns/productsColumns";
+// import {
+//   useReactTable,
+//   getCoreRowModel,
+//   getSortedRowModel,
+//   flexRender,
+//   SortingState,
+// } from "@tanstack/react-table";
+
+// import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/src/components/ui/table";
+// import { Card } from "@/src/components/ui/card";
+// import { Container } from "@/src/components/ui/container";
+// import { Skeleton } from "@/src/components/ui/skeleton";
+// import { EmptyState } from "@/src/components/ui/empty-state";
+// import { useAuth } from "@/src/hooks/useAuth";
+
+// // Modal
+// import ProductsModal from "@/src/components/ProductsModal";
+
+// export default function ProductsPage() {
+//   const dispatch = useDispatch<AppDispatch>();
+//   const { items: products, loading, error } = useSelector((state: RootState) => state.products);
+//   const { user, isLoading: authLoading } = useAuth();
+
+//   // Modal state
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+//   const [deleteLoading, setDeleteLoading] = useState<string | null>(null);
+
+//   // subscribe to products
+//   useEffect(() => {
+//     const unsubscribe = subscribeToProducts(dispatch);
+//     return () => unsubscribe();
+//   }, [dispatch]);
+
+//   // sorting state
+//   const [sorting, setSorting] = useState<SortingState>([]);
+
+//   const table = useReactTable({
+//     data: products,
+//     columns: productsColumns,
+//     state: { sorting },
+//     onSortingChange: setSorting,
+//     getCoreRowModel: getCoreRowModel(),
+//     getSortedRowModel: getSortedRowModel(),
+//   });
+
+//   // Delete product using Express API
+//   const handleDeleteProduct = async (productId: string) => {
+//     // if (!confirm("Are you sure you want to delete this product?")) {
+//     //   return;
+//     // }
+
+//     setDeleteLoading(productId);
+//     try {
+//      // const response = await fetch(`http://localhost:4000/api/products/${productId}`, {
+//       const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products/${productId}`, {
+//         method: "DELETE",
+//         credentials: "include", // Important for sending cookies
+//       });
+
+//       if (!response.ok) {
+//         const errorData = await response.json();
+//         throw new Error(errorData.error || "Failed to delete product");
+//       }
+
+//       console.log("Product deleted successfully");
+//     } catch (err) {
+//       console.error("Error deleting product:", err);
+//       alert("Failed to delete product. Check console for details.");
+//     } finally {
+//       setDeleteLoading(null);
+//     }
+//   };
+
+//   // auth
+//   if (authLoading) return <div>Checking authentication…</div>;
+//   if (!user) return <div>You must be logged in.</div>;
+
+//   return (
+//     <Container>
+//       <div className="py-8">
+//         <h1 className="text-2xl font-semibold mb-4">Product Management</h1>
+
+//         {/* Create Product Button */}
+//         <button
+//           onClick={() => setIsModalOpen(true)}
+//           className="mb-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+//         >
+//           Create Product
+//         </button>
+
+//         {/* Products Modal */}
+//         <ProductsModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
+//         <Card>
+//           {loading ? (
+//             <div className="space-y-3">
+//               <Skeleton className="h-6 w-1/3" />
+//               <div className="grid grid-cols-4 gap-2">
+//                 <Skeleton className="h-10" />
+//                 <Skeleton className="h-10" />
+//                 <Skeleton className="h-10" />
+//                 <Skeleton className="h-10" />
+//               </div>
+//             </div>
+//           ) : error ? (
+//             <div className="text-red-600">Error: {error}</div>
+//           ) : products.length === 0 ? (
+//             <EmptyState title="No products yet" description="Add products to see them here." />
+//           ) : (
+//             <div className="overflow-x-auto">
+//               <Table>
+//                 <TableHeader>
+//                   {table.getHeaderGroups().map(headerGroup => (
+//                     <TableRow key={headerGroup.id}>
+//                       {headerGroup.headers.map(header => (
+//                         <TableHead
+//                           key={header.id}
+//                           className="cursor-pointer select-none"
+//                           onClick={() => {
+//                             const colId = header.column.id;
+//                             if (table.getState().sorting?.[0]?.id === colId) {
+//                               const current = table.getState().sorting[0];
+//                               if (current?.desc) table.setSorting([{ id: colId, desc: false }]);
+//                               else table.setSorting([]);
+//                             } else {
+//                               table.setSorting([{ id: colId, desc: true }]);
+//                             }
+//                           }}
+//                         >
+//                           {header.isPlaceholder ? null : (
+//                             <div className="flex items-center gap-2">
+//                               {flexRender(header.column.columnDef.header, header.getContext())}
+//                               {table.getState().sorting?.[0]?.id === header.column.id ? (
+//                                 table.getState().sorting[0].desc ? <span>↓</span> : <span>↑</span>
+//                               ) : null}
+//                             </div>
+//                           )}
+//                         </TableHead>
+//                       ))}
+//                       {/* Extra header for delete button */}
+//                       <TableHead>Actions</TableHead>
+//                     </TableRow>
+//                   ))}
+//                 </TableHeader>
+//                 <TableBody>
+//                   {table.getRowModel().rows.map((row) => {
+//                     const product = row.original; // Use row.original to get the product data
+//                     return (
+//                       <TableRow key={row.id}>
+//                         {row.getVisibleCells().map(cell => (
+//                           <TableCell key={cell.id}>
+//                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
+//                           </TableCell>
+//                         ))}
+//                         {/* Delete button */}
+//                         <TableCell>
+//                           <button
+//                             onClick={() => handleDeleteProduct(product.id)}
+//                             disabled={deleteLoading === product.id}
+//                             className="px-2 py-1 text-red-600 border rounded hover:bg-red-50 disabled:opacity-50"
+//                           >
+//                             {deleteLoading === product.id ? "Deleting..." : "Delete"}
+//                           </button>
+//                         </TableCell>
+//                       </TableRow>
+//                     );
+//                   })}
+//                 </TableBody>
+//               </Table>
+//             </div>
+//           )}
+//         </Card>
+//       </div>
+//     </Container>
+//   );
+// }
+
+
+
+
+
+
+
+
+
+
+
+// src/app/products/page.tsx - FIXED VERSION
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -457,28 +648,33 @@ export default function ProductsPage() {
     getSortedRowModel: getSortedRowModel(),
   });
 
-  // Delete product using Express API
+  // Delete product using Express API - FIXED VERSION
   const handleDeleteProduct = async (productId: string) => {
-    // if (!confirm("Are you sure you want to delete this product?")) {
-    //   return;
-    // }
-
     setDeleteLoading(productId);
     try {
-     // const response = await fetch(`http://localhost:4000/api/products/${productId}`, {
+      const token = localStorage.getItem('auth_token');
+      
+      console.log("🔄 Deleting product:", productId);
+      console.log("Token exists:", !!token);
+      
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products/${productId}`, {
         method: "DELETE",
-        credentials: "include", // Important for sending cookies
+        credentials: "include",
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
 
+      console.log("Delete response status:", response.status);
+      
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Failed to delete product");
       }
 
-      console.log("Product deleted successfully");
+      console.log("✅ Product deleted successfully");
     } catch (err) {
-      console.error("Error deleting product:", err);
+      console.error("❌ Error deleting product:", err);
       alert("Failed to delete product. Check console for details.");
     } finally {
       setDeleteLoading(null);
@@ -558,7 +754,7 @@ export default function ProductsPage() {
                 </TableHeader>
                 <TableBody>
                   {table.getRowModel().rows.map((row) => {
-                    const product = row.original; // Use row.original to get the product data
+                    const product = row.original;
                     return (
                       <TableRow key={row.id}>
                         {row.getVisibleCells().map(cell => (
