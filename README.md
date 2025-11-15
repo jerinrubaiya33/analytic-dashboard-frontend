@@ -122,8 +122,13 @@ bash
 npm run build
 
 # Start production server
-npm start
-📊 Key Functionalities
+```text
+npm run dev
+```
+
+**Please add .env.local at frontend and backend**
+
+
 # Product Management
 **Real-time Table:** Live updates from **Firestore**
 
