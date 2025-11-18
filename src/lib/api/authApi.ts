@@ -65,12 +65,7 @@
 // export default authApi;
 
 
-
-
-
-
-
-// src/lib/api/authApi.ts - FIXED VERSION
+// src/lib/api/authApi.ts
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface LoginRequest {
@@ -116,7 +111,7 @@ export const authApi = createApi({
       const token = getToken();
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);
-        console.log("🔐 Adding Authorization header with token");
+        console.log(" Adding Authorization header with token");
       }
       headers.set('Content-Type', 'application/json');
       return headers;
@@ -136,7 +131,7 @@ export const authApi = createApi({
           
           if (data.token) {
             setToken(data.token);
-            console.log("✅ Token stored in localStorage:", data.token.substring(0, 20) + "...");
+            console.log(" Token stored in localStorage:", data.token.substring(0, 20) + "...");
           }
           
           dispatch(authApi.util.invalidateTags(["Me"]));
