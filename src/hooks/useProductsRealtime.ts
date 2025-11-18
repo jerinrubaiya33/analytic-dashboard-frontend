@@ -19,115 +19,6 @@
 //   name: string;
 //   price: number;
 //   category?: string;
-//   // add any other fields matching your Firestore documents
-// };
-
-// type UseProductsResult = {
-//   products: Product[];
-//   loading: boolean;
-//   error: Error | null;
-//   lastSnapshot?: QuerySnapshot<DocumentData>;
-// };
-
-// export default function useProductsRealtime(
-//   opts?: {
-//     whereClause?: [string, WhereFilterOp, any];
-//     orderByField?: string;
-//     limitCount?: number;
-//   }
-// ): UseProductsResult {
-//   const [products, setProducts] = useState<Product[]>([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState<Error | null>(null);
-//   const snapshotRef = useRef<QuerySnapshot<DocumentData> | null>(null);
-
-//   useEffect(() => {
-//     setLoading(true);
-//     setError(null);
-
-//     // Base collection reference
-//     let q: Query<DocumentData> = collection(db, "products");
-
-//     // Apply filters and ordering
-//     if (opts?.whereClause) {
-//       const [field, op, value] = opts.whereClause;
-//       q = query(q, where(field, op, value));
-//     }
-
-//     if (opts?.orderByField) {
-//       q = query(q, orderBy(opts.orderByField));
-//     }
-
-//     if (opts?.limitCount && opts.limitCount > 0) {
-//       q = query(q, limit(opts.limitCount));
-//     }
-
-//     // Subscribe to real-time updates
-//     const unsubscribe: Unsubscribe = onSnapshot(
-//       q,
-//       (snap) => {
-//         snapshotRef.current = snap;
-
-//         // ✅ Incremental updates (added / modified / removed)
-//         snap.docChanges().forEach((change) => {
-//           const doc = change.doc;
-//           const data = { id: doc.id, ...(doc.data() as any) } as Product;
-
-//           if (change.type === "added") {
-//             setProducts((prev) => {
-//               // prevent duplicates if reconnected
-//               if (prev.find((p) => p.id === data.id)) return prev;
-//               return [...prev, data];
-//             });
-//           } else if (change.type === "modified") {
-//             setProducts((prev) =>
-//               prev.map((p) => (p.id === data.id ? data : p))
-//             );
-//           } else if (change.type === "removed") {
-//             setProducts((prev) => prev.filter((p) => p.id !== data.id));
-//           }
-//         });
-
-//         setLoading(false);
-//       },
-//       (err) => {
-//         console.error("Products realtime listener error:", err);
-//         setError(err);
-//         setLoading(false);
-//       }
-//     );
-
-//     return () => unsubscribe();
-//   }, [
-//     opts?.whereClause ? JSON.stringify(opts.whereClause) : null,
-//     opts?.orderByField,
-//     opts?.limitCount,
-//   ]);
-
-//   return { products, loading, error, lastSnapshot: snapshotRef.current ?? undefined };
-// }
-
-// import { useEffect, useState, useRef } from "react";
-// import {
-//   collection,
-//   query,
-//   orderBy,
-//   onSnapshot,
-//   where,
-//   limit,
-//   Query,
-//   DocumentData,
-//   QuerySnapshot,
-//   Unsubscribe,
-//   WhereFilterOp,
-// } from "firebase/firestore";
-// import { db } from "../lib/firebaseClient";
-
-// export type Product = {
-//   id: string;
-//   name: string;
-//   price: number;
-//   category?: string;
 //   createdAt?: any;
 // };
 
@@ -169,7 +60,7 @@
 //       q = query(q, limit(opts.limitCount));
 //     }
 
-//     // ✅ Always replace state on each snapshot to ensure full sync
+//     //  Always replace state on each snapshot to ensure full sync
 //     const unsubscribe: Unsubscribe = onSnapshot(
 //       q,
 //       (snap) => {
