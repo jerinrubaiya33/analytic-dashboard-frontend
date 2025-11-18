@@ -54,7 +54,7 @@ export function useAuth(required: boolean = true) {
   const [isChecking, setIsChecking] = useState(true);
 
   useEffect(() => {
-    console.log("🔐 Auth Debug:", { 
+    console.log(" Auth Debug:", { 
       isLoading, 
       isError, 
       data, 
@@ -66,7 +66,7 @@ export function useAuth(required: boolean = true) {
       setIsChecking(false);
       
       if (required && isError) {
-        console.log("❌ Not authenticated, redirecting to login");
+        console.log(" Not authenticated, redirecting to login");
         router.replace("/login");
       }
     }
