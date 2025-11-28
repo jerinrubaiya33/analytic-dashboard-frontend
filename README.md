@@ -7,7 +7,7 @@ A modern, responsive dashboard for real-time product management built with Next.
 **Analytic Products:** https://analytic-dashboard-frontend.vercel.app/login
 Login with this 
 
-Email: admin@gmail.com
+Email: admin@example.com
 
 Password: password123
 
